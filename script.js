@@ -1,10 +1,13 @@
+// Catch getElementById
 const searchBox = document.getElementById("search-box");
 const searchBtn = document.getElementById("search-btn");
 const result = document.getElementById("result");
 const showLyrics = document.getElementById("showLyrics");
 
+// Call Project API
 const apiURL = "https://api.lyrics.ovh";
 const lyricsURL = "https://api.lyrics.ovh/v1/";
+
 
 // search songs and artist name
 const searchSongs = () => {
@@ -13,6 +16,7 @@ const searchSongs = () => {
     .then((data) => showData(data.data))
     .catch((err) => alert("Input valid names"));
 };
+
 
   // event handler button 
 searchBtn.addEventListener("click", (e) => {
@@ -26,6 +30,7 @@ searchBtn.addEventListener("click", (e) => {
   }
 });
 
+
 // search ten songs and artist result
 const showData = (data) => {
   for (let i = 0; i < data.length; i++) {
@@ -36,6 +41,7 @@ const showData = (data) => {
     }
   }
 };
+
 
 // display songs and songs title
 const displayItems = (title, artist, album, img) => {
@@ -55,6 +61,8 @@ const displayItems = (title, artist, album, img) => {
           </div>
     `;
 };
+
+
 // Api call for lyrics 
 const lyrics = (artist, title) => {
   fetch(`${lyricsURL}/${artist}/${title}`)
@@ -63,6 +71,7 @@ const lyrics = (artist, title) => {
       displayLyrics(artist, title, data.lyrics);
     });
 };
+
 
  // Show Lyrics of songs 
 const displayLyrics = (artist, title, lyrics = "Sorry! this lyrics is unavailable <br> Reload &#x21bb;") => {
